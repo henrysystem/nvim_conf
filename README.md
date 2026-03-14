@@ -40,7 +40,26 @@ O editar `hosts.json` para agregar tu máquina:
 :EditHosts
 ```
 
-### 3. Instalar OpenCode config (opcional)
+### 3. Instalar tema de terminal (recomendado)
+
+Para que los colores se vean idénticos:
+
+```bash
+# Terminal.app (Mac)
+open terminal-themes/snazzy.terminal
+# Luego: Terminal → Preferences → Profiles → Set as Default
+
+# Alacritty
+cat terminal-themes/snazzy-alacritty.yml >> ~/.config/alacritty/alacritty.yml
+
+# Kitty
+cat terminal-themes/snazzy-kitty.conf >> ~/.config/kitty/kitty.conf
+
+# Windows Terminal
+# Copiar contenido de snazzy-windows-terminal.json a settings.json
+```
+
+### 4. Instalar OpenCode config (opcional)
 
 ```bash
 # Windows
@@ -67,6 +86,11 @@ nvim_conf/
 ├── opencode/
 │   ├── opencode.json          # Config de OpenCode
 │   └── README.md              # Instrucciones de OpenCode
+├── terminal-themes/           # Temas de terminal (Snazzy)
+│   ├── snazzy.terminal        # Para Terminal.app (Mac)
+│   ├── snazzy-alacritty.yml   # Para Alacritty
+│   ├── snazzy-kitty.conf      # Para Kitty
+│   └── snazzy-windows-terminal.json  # Para Windows Terminal
 └── skills/                    # Skills para nvim
 ```
 
