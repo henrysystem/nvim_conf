@@ -1,0 +1,23 @@
+{
+  "name": "Snazzy Soft",
+  "background": "#282A36",
+  "foreground": "#EFF0EB",
+  "cursorColor": "#97979B",
+  "selectionBackground": "#3E404A",
+  "black": "#282A36",
+  "red": "#FF5C57",
+  "green": "#5AF78E",
+  "yellow": "#F3F99D",
+  "blue": "#57C7FF",
+  "purple": "#D88AB8",
+  "cyan": "#7AC7E0",
+  "white": "#F1F1F0",
+  "brightBlack": "#686868",
+  "brightRed": "#FF5C57",
+  "brightGreen": "#5AF78E",
+  "brightYellow": "#F3F99D",
+  "brightBlue": "#57C7FF",
+  "brightPurple": "#C878A8",
+  "brightCyan": "#6BB5D0",
+  "brightWhite": "#EFF0EB"
+}

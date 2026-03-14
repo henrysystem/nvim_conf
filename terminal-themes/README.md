@@ -2,6 +2,11 @@
 
 Tema de terminal usado en la configuración principal.
 
+## Variantes
+
+- **Snazzy**: Colores originales brillantes
+- **Snazzy Soft**: Colores suavizados (recomendado para OpenCode) - cyan y magenta menos saturados
+
 ## Colores
 
 | Color | Hex | Uso |

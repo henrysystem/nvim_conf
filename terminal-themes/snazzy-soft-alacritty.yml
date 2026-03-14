@@ -1,0 +1,34 @@
+# Snazzy Soft color scheme for Alacritty
+
+colors:
+  primary:
+    background: '#282a36'
+    foreground: '#eff0eb'
+
+  cursor:
+    text:   '#282a36'
+    cursor: '#97979b'
+
+  selection:
+    text:       '#eff0eb'
+    background: '#3e404a'
+
+  normal:
+    black:   '#282a36'
+    red:     '#ff5c57'
+    green:   '#5af78e'
+    yellow:  '#f3f99d'
+    blue:    '#57c7ff'
+    magenta: '#d88ab8'
+    cyan:    '#7ac7e0'
+    white:   '#f1f1f0'
+
+  bright:
+    black:   '#686868'
+    red:     '#ff5c57'
+    green:   '#5af78e'
+    yellow:  '#f3f99d'
+    blue:    '#57c7ff'
+    magenta: '#c878a8'
+    cyan:    '#6bb5d0'
+    white:   '#eff0eb'

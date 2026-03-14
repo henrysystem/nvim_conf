@@ -44,19 +44,19 @@ O editar `hosts.json` para agregar tu máquina:
 
 Para que los colores se vean idénticos:
 
+**Nota**: Se recomienda usar la variante **Snazzy Soft** para OpenCode (colores menos saturados en contexto MCP/LSP).
+
 ```bash
-# Terminal.app (Mac)
+# Terminal.app (Mac) - Snazzy Soft recomendado
 open terminal-themes/snazzy.terminal
 # Luego: Terminal → Preferences → Profiles → Set as Default
 
-# Alacritty
-cat terminal-themes/snazzy-alacritty.yml >> ~/.config/alacritty/alacritty.yml
+# Alacritty - Snazzy Soft
+cat terminal-themes/snazzy-soft-alacritty.yml >> ~/.config/alacritty/alacritty.yml
 
-# Kitty
-cat terminal-themes/snazzy-kitty.conf >> ~/.config/kitty/kitty.conf
-
-# Windows Terminal
-# Copiar contenido de snazzy-windows-terminal.json a settings.json
+# Windows Terminal - Snazzy Soft
+# Copiar contenido de snazzy-soft-windows-terminal.json a settings.json
+# Luego en tu perfil: "colorScheme": "Snazzy Soft"
 ```
 
 ### 4. Instalar OpenCode config (opcional)
