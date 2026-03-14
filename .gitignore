@@ -1,0 +1,10 @@
+# No subir a GitHub
+last_host.txt
+init.vim.backup-*
+init.vim.legacy-*
+spell/
+lazy-lock.json
+*.swp
+*.swo
+Session.vim
+.netrwhist

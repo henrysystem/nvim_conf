@@ -1,0 +1,93 @@
+{
+  "_comment": "Configuracion de hosts para nvim. Agrega tu maquina aqui.",
+  "_usage": "Windows: set NVIM_HOST=nombre | Mac: export NVIM_HOST=nombre",
+  "hosts": {
+    "windows_main": {
+      "name": "Windows Principal",
+      "paths": {
+        "base": "D:",
+        "dynasif": "D:/Pintulac/01_PRODUCCION/dynasif",
+        "trading": "D:/Proyectos/Activos/trading/TradingManager",
+        "respaldos": "D:/Pintulac/06_RESPALDOS/Funcionalidades/Respaldos-Funcionalidades/Respaldos",
+        "recursos": "D:/Recursos",
+        "proyectos": "D:/Proyectos",
+        "documents": "D:/Users/bengy/Documents"
+      },
+      "favorites": {
+        "d": { "path": "D:/", "label": "Drive D" },
+        "recursos": { "path": "D:/Recursos", "label": "Recursos" },
+        "proyectos": { "path": "D:/Proyectos", "label": "Proyectos" },
+        "trading": { "path": "D:/Proyectos/Activos/trading/TradingManager", "label": "TradingManager" },
+        "dynasif": { "path": "D:/Pintulac/01_PRODUCCION/dynasif", "label": "Dynasif" },
+        "respaldos": { "path": "D:/Pintulac/06_RESPALDOS/Funcionalidades/Respaldos-Funcionalidades/Respaldos", "label": "Respaldos" }
+      },
+      "commands": [
+        { "text": "abrir dynasif", "cmd": "cd D:/Pintulac/01_PRODUCCION/dynasif + Oil", "category": "abrir" },
+        { "text": "abrir respaldos", "cmd": "cd D:/Pintulac/06_RESPALDOS/Funcionalidades/Respaldos-Funcionalidades/Respaldos + Oil", "category": "abrir" },
+        { "text": "abrir proyectos", "cmd": "cd D:/Proyectos + Oil", "category": "abrir" },
+        { "text": "abrir trading", "cmd": "cd D:/Proyectos/Activos/trading/TradingManager + Oil", "category": "abrir" },
+        { "text": "abrir d", "cmd": "cd D:/ + Oil", "category": "abrir" },
+        { "text": "abrir recursos", "cmd": "cd D:/Recursos + Oil", "category": "abrir" },
+        { "text": "ejecutar trading gui", "cmd": "python -B gui.py (cwd: D:/Proyectos/Activos/trading/TradingManager)", "category": "ejecutar" }
+      ]
+    },
+    "macbook": {
+      "name": "MacBook Pro",
+      "paths": {
+        "base": "/Users/bengy",
+        "dynasif": "/Users/bengy/Proyectos/dynasif",
+        "trading": "/Users/bengy/Trading/TradingManager",
+        "respaldos": "/Users/bengy/Backups/Respaldos",
+        "recursos": "/Users/bengy/Recursos",
+        "proyectos": "/Users/bengy/Proyectos",
+        "documents": "/Users/bengy/Documents"
+      },
+      "favorites": {
+        "d": { "path": "/", "label": "Root" },
+        "recursos": { "path": "/Users/bengy/Recursos", "label": "Recursos" },
+        "proyectos": { "path": "/Users/bengy/Proyectos", "label": "Proyectos" },
+        "trading": { "path": "/Users/bengy/Trading/TradingManager", "label": "TradingManager" },
+        "dynasif": { "path": "/Users/bengy/Proyectos/dynasif", "label": "Dynasif" },
+        "respaldos": { "path": "/Users/bengy/Backups/Respaldos", "label": "Respaldos" }
+      },
+      "commands": [
+        { "text": "abrir dynasif", "cmd": "cd /Users/bengy/Proyectos/dynasif + Oil", "category": "abrir" },
+        { "text": "abrir respaldos", "cmd": "cd /Users/bengy/Backups/Respaldos + Oil", "category": "abrir" },
+        { "text": "abrir proyectos", "cmd": "cd /Users/bengy/Proyectos + Oil", "category": "abrir" },
+        { "text": "abrir trading", "cmd": "cd /Users/bengy/Trading/TradingManager + Oil", "category": "abrir" },
+        { "text": "abrir raiz", "cmd": "cd / + Oil", "category": "abrir" },
+        { "text": "abrir recursos", "cmd": "cd /Users/bengy/Recursos + Oil", "category": "abrir" },
+        { "text": "ejecutar trading gui", "cmd": "python -B gui.py (cwd: /Users/bengy/Trading/TradingManager)", "category": "ejecutar" }
+      ]
+    },
+    "laptop_win": {
+      "name": "Laptop Windows",
+      "paths": {
+        "base": "C:",
+        "dynasif": "C:/Users/bengy/Proyectos/dynasif",
+        "trading": "C:/Users/bengy/Trading/TradingManager",
+        "respaldos": "C:/Users/bengy/Backups/Respaldos",
+        "recursos": "C:/Users/bengy/Recursos",
+        "proyectos": "C:/Users/bengy/Proyectos",
+        "documents": "C:/Users/bengy/Documents"
+      },
+      "favorites": {
+        "d": { "path": "C:/", "label": "Drive C" },
+        "recursos": { "path": "C:/Users/bengy/Recursos", "label": "Recursos" },
+        "proyectos": { "path": "C:/Users/bengy/Proyectos", "label": "Proyectos" },
+        "trading": { "path": "C:/Users/bengy/Trading/TradingManager", "label": "TradingManager" },
+        "dynasif": { "path": "C:/Users/bengy/Proyectos/dynasif", "label": "Dynasif" },
+        "respaldos": { "path": "C:/Users/bengy/Backups/Respaldos", "label": "Respaldos" }
+      },
+      "commands": [
+        { "text": "abrir dynasif", "cmd": "cd C:/Users/bengy/Proyectos/dynasif + Oil", "category": "abrir" },
+        { "text": "abrir respaldos", "cmd": "cd C:/Users/bengy/Backups/Respaldos + Oil", "category": "abrir" },
+        { "text": "abrir proyectos", "cmd": "cd C:/Users/bengy/Proyectos + Oil", "category": "abrir" },
+        { "text": "abrir trading", "cmd": "cd C:/Users/bengy/Trading/TradingManager + Oil", "category": "abrir" },
+        { "text": "abrir c", "cmd": "cd C:/ + Oil", "category": "abrir" },
+        { "text": "abrir recursos", "cmd": "cd C:/Users/bengy/Recursos + Oil", "category": "abrir" },
+        { "text": "ejecutar trading gui", "cmd": "python -B gui.py (cwd: C:/Users/bengy/Trading/TradingManager)", "category": "ejecutar" }
+      ]
+    }
+  }
+}
