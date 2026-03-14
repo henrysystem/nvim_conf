@@ -1,0 +1,108 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "plugin": [
+        "opencode-gemini-auth@latest"
+    ],
+    "provider": {
+        "google": {
+            "options": {
+                "apiKey": "AIzaSyC730CganfuFNvrYrDrHYbDVz7Y6gsPKN0"
+            },
+            "models": {
+                "gemini-3.1-pro": {},
+                "gemini-2.0-flash-exp": {},
+                "gemini-1.5-pro": {},
+                "gemini-1.5-flash": {}
+            }
+        }
+    },
+    "skills": {
+        "paths": [
+            "D:/Recursos/tools/cognitive-canonical/profiles/powerbuilder/skills",
+            "D:/Recursos/tools/cognitive-canonical/profiles/generic/skills",
+            "D:/Recursos/tools/cognitive-canonical/files/skills/_core",
+            "./skills",
+            "D:/Recursos/tools/cognitive-canonical/profiles/python/skills"
+        ]
+    },
+    "command": {
+        "instala-estructura-ia": {
+            "description": "Instala estructura IA universal en cwd",
+            "template": "Instala o actualiza la estructura de IA en el proyecto actual.\nEjecuta exactamente este comando en la carpeta actual:\npowershell -NoProfile -ExecutionPolicy Bypass -File \"D:/Recursos/tools/cognitive-canonical/core/scripts/install_from_canonical.ps1\"\nLuego reporta: perfil detectado, archivos instalados/actualizados y cualquier advertencia.",
+            "agent": "build"
+        },
+        "ai-init": {
+            "description": "Alias rapido para instalar IA en cwd",
+            "template": "Instala o actualiza la estructura de IA en el proyecto actual.\nEjecuta exactamente este comando en la carpeta actual:\npowershell -NoProfile -ExecutionPolicy Bypass -File \"D:/Recursos/tools/cognitive-canonical/core/scripts/install_from_canonical.ps1\"\nLuego reporta: perfil detectado, archivos instalados/actualizados y cualquier advertencia.",
+            "agent": "build"
+        },
+        "sdd-init": {
+            "description": "Inicializa orquestacion SDD",
+            "template": "Trabaja en modo SDD orquestado desde este momento.\n1) Identifica stack y alcance del proyecto actual.\n2) Ejecuta fase de inicializacion SDD sin escribir codigo de negocio todavia.\n3) Define estado inicial de fases: explore -> propose -> design -> apply -> verify -> release.\n4) Entrega solo: contexto detectado, riesgos iniciales, siguiente fase recomendada y comando sugerido.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-explore": {
+            "description": "Fase SDD Explore",
+            "template": "Ejecuta la fase SDD EXPLORE para el requerimiento dado por el usuario.\nUsa subagentes para exploracion (fresh context) y evita implementacion.\nSalida: hallazgos, dependencias, objetos impactados, riesgos, supuestos, preguntas bloqueantes y recomendacion de propuesta.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-propose": {
+            "description": "Fase SDD Propose",
+            "template": "Ejecuta la fase SDD PROPOSE con base en lo explorado.\nNo implementes codigo.\nSalida: objetivo, alcance/no alcance, estrategia, riesgos y plan de rollback, criterios de aceptacion.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-design": {
+            "description": "Fase SDD Design",
+            "template": "Ejecuta la fase SDD DESIGN.\nDefine diseno tecnico detallado (objetos, funciones, SQL, flujo, validaciones).\nNo implementes aun.\nSalida estructurada y lista para aprobar implementacion.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-apply": {
+            "description": "Fase SDD Apply",
+            "template": "Ejecuta la fase SDD APPLY solo para el diseno aprobado.\nImplementa por bloques pequenos y valida cada bloque.\nUsa subagentes cuando convenga y resume cambios por archivo.\nNo mezcles cambios fuera de alcance.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-verify": {
+            "description": "Fase SDD Verify",
+            "template": "Ejecuta la fase SDD VERIFY.\nValida funcionalidad vs diseno aprobado, regresiones y consistencia de datos/SQL.\nEntrega evidencias, fallos, severidad y estado final (PASS/FAIL) con acciones recomendadas.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-release": {
+            "description": "Fase SDD Release",
+            "template": "Ejecuta la fase SDD RELEASE para un cambio verificado.\nGenera cierre operativo: resumen final, objetos, SQL, riesgos residuales y checklist de despliegue/QA.\nSi aplica, prepara borrador de comunicacion QA.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-new": {
+            "description": "Inicia flujo SDD completo",
+            "template": "Inicia un flujo SDD completo para el requerimiento actual.\nSecuencia obligatoria: explore -> propose -> design.\nDetente al final de design y pide aprobacion explicita para apply.\nNo implementes antes de aprobacion.",
+            "agent": "sdd-orchestrator"
+        },
+        "sdd-continue": {
+            "description": "Continua siguiente fase SDD",
+            "template": "Continua la siguiente fase SDD pendiente segun estado actual del trabajo.\nNo repitas fases ya cerradas.\nSi no hay estado claro, reconstruyelo desde historial/notas y propon la siguiente fase minima segura.",
+            "agent": "sdd-orchestrator"
+        }
+    },
+    "agent": {
+        "sdd-orchestrator": {
+            "mode": "primary",
+            "description": "SDD Orchestrator (Agent Teams Lite + memoria hibrida)",
+            "prompt": "SPEC-DRIVEN DEVELOPMENT (SDD) ORCHESTRATOR\n==========================================\n\nYou are the SDD orchestrator. Keep your normal assistant identity and apply SDD as an overlay.\n\nCORE OPERATING RULES:\n- Delegate-only: never do analysis/design/implementation/verification inline\n- Launch sub-agents via Task for all phase work\n- Lead only coordinates DAG state, user approvals, and concise summaries\n- /sdd-new, /sdd-continue, /sdd-ff are meta-commands handled by orchestrator (not skills)\n\nARTIFACT STORE POLICY:\n- artifact_store.mode: engram | openspec | none\n- Default: engram when available; openspec only if user explicitly requests file artifacts; otherwise none\n- In none mode, do not write project files; return inline and recommend enabling engram/openspec\n\nCANONICAL SQL MEMORY (Dynasif Hybrid):\n- Keep SDD artifacts in Engram as default artifact store.\n- If project contains skills/memory-protocol/scripts/llm_memory_bridge.py, also record operational checkpoints to canonical SQL memory.\n- On /sdd-init: run save-session with project+branch and brief context.\n- After each completed phase (explore/propose/design/apply/verify/release): run save-session checkpoint.\n- Every save-session checkpoint MUST include this structure:\n  **What**: concise action summary\n  **Why**: business/technical reason\n  **Where**: files/paths touched\n  **Objects**: PowerBuilder objects modified (w_*.srw, nvo_*.sru, dw_*.srd, f_*.srf)\n  **SQL Modified**: existing SQL scripts or embedded SQL blocks changed\n  **SQL Created**: new SQL scripts/files created in the phase\n- Detection rule for Objects/SQL fields:\n  - Infer from changed files and phase output.\n  - If SQL appears embedded in PowerBuilder, reference object + section/event.\n  - If a field has no entries, write N/A explicitly.\n- On /sdd-archive (or explicit session close): run add-history with final summary including Objects/SQL sections.\n- Never replace Engram artifacts; SQL memory is complementary for branch/session traceability.\n\nRELEASE COMMUNICATION AND EMAIL EXECUTION:\n- If the user asks to send or test an email or notification, use the release-notify skill to draft the content and the qa-release skill to execute delivery via the existing Python mailer.\n- Interpret recipient aliases as follows: qa -> EMAIL_TARGET_QA, dba -> EMAIL_TARGET_DBA, todos or ambos -> both recipients.\n- If the user says mail de prueba, correo de prueba, probemos, or explicitly asks to test, execute the mailer with --dry-run.\n- If the user asks envia mail a qa, envia mail a dba, or envia mail a todos, treat that as an execution request, not only a draft.\n- If the request is for a general summary, draft a release-style notification body. If the request targets DBA or references SQL, prefer attaching incremental consolidated SQL when appropriate.\n- If the user asks to notify themselves, use the explicit email address they provide; if no address is available, ask only for the destination email.\n- After drafting or sending a notification, save an operational checkpoint in canonical memory summarizing channel, recipients, dry-run vs real send, and key deployment notes.",
+            "tools": {
+                "read": true,
+                "write": true,
+                "edit": true,
+                "bash": true
+            }
+        }
+    },
+    "mcp": {
+        "engram": {
+            "type": "local",
+            "command": [
+                "engram",
+                "mcp"
+            ],
+            "enabled": true
+        }
+    }
+}
