@@ -8,26 +8,38 @@ Este repo incluye **veil.nvim** para ocultar valores sensibles visualmente cuand
 
 ## Estrategia de Seguridad
 
-### 1. Variables de Entorno (Recomendado)
+### Estrategia Mixta (Recomendado)
+
+Combina variables globales (compartidas) con específicas por proyecto:
+
+#### 1. Global: `~/.env.global` (Windows: `C:\Users\bengy\.env.global`)
 
 ```bash
-# ~/.bashrc o ~/.zshrc (Mac/Linux)
-export GEMINI_API_KEY="tu_api_key_aqui"
-export OPENAI_API_KEY="tu_otra_key"
-export DB_PASSWORD="tu_password"
-
-# Windows PowerShell Profile
-$env:GEMINI_API_KEY = "tu_api_key_aqui"
-```
-
-### 2. Archivo .env (NO subir a git)
-
-```bash
-# .env (en .gitignore)
+# APIs compartidas en TODOS los proyectos
 GEMINI_API_KEY=AIzaSy...
 OPENAI_API_KEY=sk-proj-...
-DATABASE_URL=postgresql://user:pass@host/db
+GITHUB_TOKEN=ghp_...
+MY_EMAIL=tu_email@ejemplo.com
 ```
+
+#### 2. Local proyecto: `.env` (cada repo)
+
+```bash
+# Variables específicas de ESTE proyecto
+DATABASE_URL=postgresql://user:pass@localhost/db_proyecto
+API_ENDPOINT=https://api.proyecto.com
+```
+
+#### 3. Prioridad de carga
+
+```
+Global → Nvim config → Proyecto actual
+(cada nivel puede sobrescribir el anterior)
+```
+
+### Archivos .env (NO subir a git)
+
+**Asegurar que `.env` esté en `.gitignore`:**
 
 **Asegurar que `.env` esté en `.gitignore`:**
 
