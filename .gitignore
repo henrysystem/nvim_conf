@@ -8,3 +8,16 @@ lazy-lock.json
 *.swo
 Session.vim
 .netrwhist
+
+# Secrets y credenciales
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+credentials.json
+secrets.yaml
+secrets.yml
+.secrets
+*_credentials.json
+api_keys.txt

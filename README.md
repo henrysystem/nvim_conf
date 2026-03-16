@@ -9,6 +9,7 @@ Configuración personalizada de Neovim con soporte multi-host y integración con
 - ✅ **Integración OpenCode**: Plugin y configuración para usar OpenCode dentro de nvim
 - ✅ **LazyVim**: Basado en LazyVim con plugins personalizados
 - ✅ **SDD Orchestrator**: Configuración para desarrollo guiado por especificaciones
+- ✅ **Veil.nvim**: Oculta API keys y secrets automáticamente al editar
 
 ## Instalación
 
@@ -59,7 +60,19 @@ cat terminal-themes/snazzy-soft-alacritty.yml >> ~/.config/alacritty/alacritty.y
 # Luego en tu perfil: "colorScheme": "Snazzy Soft"
 ```
 
-### 4. Instalar OpenCode config (opcional)
+### 4. Configurar secrets (IMPORTANTE)
+
+```bash
+# Copiar ejemplo de variables de entorno
+cp .env.example .env
+
+# Editar .env y agregar tus API keys reales
+nvim .env  # veil.nvim ocultará los valores automáticamente
+
+# NUNCA subir .env a git (ya está en .gitignore)
+```
+
+### 5. Instalar OpenCode config (opcional)
 
 ```bash
 # Windows
@@ -67,6 +80,9 @@ Copy-Item opencode\opencode.json $env:USERPROFILE\.config\opencode\opencode.json
 
 # Mac/Linux
 cp opencode/opencode.json ~/.config/opencode/opencode.json
+
+# Editar y poner tu API key (será ocultada por veil.nvim)
+nvim ~/.config/opencode/opencode.json
 ```
 
 ## Estructura
